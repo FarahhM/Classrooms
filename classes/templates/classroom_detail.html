@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card text-center" style="margin-top: 80px;" >
+  <div class="card-header" style="background-color: #e3f2fd; color: 000034; margin-top: 30;">
+    Classroom Details
+  </div>
+  <div class="card-body">
+    <h5 class="card-title" style="color: 000034;">{{classroom.name}} {{classroom.subject}}</h5>
+    <p class="card-text" style="color: 000034;">{{classroom.year}}</p>
+    <a href="{% url 'classroom-update' classroom.id %}" class="btn" style="background-color: #000034; color: white;">Update</a>
+    <a href="{% url 'classroom-delete' classroom.id %}" class="btn" style="background-color: #FFA500; color: #000034;">Delete</a>
+    {% if request.user == classroom.teacher%}
+    <a href="{% url 'new-student' classroom.id %}" 
+    class="btn" style="background-color: #9B59B6; color: #000034;">Add Student</a>
+    {% endif %}
+  </div>
+</div>
+<br>
+<div>
+<table class="table" style="margin-top: 30px;">
+  <thead style="background-color: #e3f2fd; color: 000034; " >
+    <tr>
+      <th scope="col">Student Name</th>
+      <th scope="col">Gender</th>
+      <th scope="col">DOB</th>
+      <th scope="col">Student Grade</th>
+      {% if request.user == classroom.teacher%}
+      <th scope="col">Delete</th>
+      <th scope="col">Update</th>
+    </tr>
+    {% endif %}
+  </thead>
+  <tbody>
+  	{% for student in students %}
+    <tr>
+      <!-- <th scope="row">1</th> -->
+      <td>{{student.name}}</td>
+      <td>{{student.gender}}</td>
+      <td>{{student.date_of_birth}}</td>
+      <td>{{student.exam_grade}}</td>
+      {% if request.user == classroom.teacher%}
+      <td><a href="{% url 'student-delete' classroom.id student.id %}" 
+    class="btn" style="background-color: #FADBD8; color: #000034;">Delete Student</a></td>
+      <td><a href="{% url 'student-update' classroom.id student.id %}" 
+    class="btn" style="background-color: #DAF7A6  ; color: #000034;">Update Student</a></td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endblock content %}

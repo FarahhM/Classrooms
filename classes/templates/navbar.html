@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #000034; margin-bottom: 30;">
+      <a class="navbar-brand" href="{% url 'classroom-list' %}" style="color: white;">Classrooms</a>
+      {% if request.user.is_anonymous%}
+      <a class="navbar-brand" href="{% url 'signup' %}" style="color: white;">Signup</a>
+      <a class="navbar-brand" href="{% url 'signin' %}" style="color: white;">Signin</a>
+      {% else %}
+      <a class="navbar-brand" href="{% url 'signout' %}" style="color: white;">Signout</a>
+      {% endif %}
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" style="color: white;" href="{% url 'classroom-create' %}">New Classroom</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+
+
+
+
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="{% url 'classroom-list' %}">Classrooms</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+    {% if request.user.is_anonymous%}
+    <a href="{%url 'signup' %}">
+    <button class="btn btn-outline-success my-2 my-sm-0" style="margin-right: 10px;" type="submit">Sign Up</button>
+  </a>
+    <a href="{%url 'signin' %}">
+    <button class="btn btn-outline-success my-2 my-sm-0" style="margin-right: 10px;" type="submit">Sign in</button>
+  </a>
+  {% else %}
+  <a href="{%url 'signout' %}">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign out</button>
+  </a>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" style="margin-left: 330px;" href="{% url 'classroom-create' %}">Create Classroom</a>
+      </li>
+      {% endif %}
+    </ul>
+    
+  </div>
+</nav> -->
